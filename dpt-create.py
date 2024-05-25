@@ -16,6 +16,9 @@ def lambda_handler(event:dict, context):
     event_data = event.get('body')
     if(type(event_data)==str):
         event_data = json.loads(event_data)
+    if(not event_data):
+        event_data = {}
+
     full_name:str = event_data.get('full_name')
     mob_num:str = event_data.get('mob_num')
     pan_num:str = event_data.get('pan_num')

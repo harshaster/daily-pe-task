@@ -11,7 +11,8 @@ def lambda_handler(event,context):
     event_data = event.get('body')
     if(type(event_data)==str):
         event_data = json.loads(event_data)
-    
+    if(not event_data):
+        event_data = {}
     if(event_data.get('id')):
         response = user_table.get_item(
             Key={
