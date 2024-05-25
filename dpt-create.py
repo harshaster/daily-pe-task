@@ -12,12 +12,16 @@ manager_table = boto3.resource('dynamodb').Table(manager_table)
 
 
 def lambda_handler(event:dict, context):
-    full_name:str = event.get('full_name')
-    mob_num:str = event.get('mob_num')
-    pan_num:str = event.get('pan_num')
+
+    event_data = event.get('body')
+    if(type(event_data)==str):
+        event_data = json.loads(event_data)
+    full_name:str = event_data.get('full_name')
+    mob_num:str = event_data.get('mob_num')
+    pan_num:str = event_data.get('pan_num')
     manager_id:uuid = None
-    if(event.get('manager_id')):
-        manager_id:uuid = event['manager_id']
+    if(event_data.get('manager_id')):
+        manager_id:uuid = event_data['manager_id']
     
     if (not full_name):
         return {
