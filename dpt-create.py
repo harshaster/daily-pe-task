@@ -82,7 +82,7 @@ def lambda_handler(event:dict, context):
         'full_name': full_name,
         'mob_num': mob_num,
         'pan_num': pan_num,
-        'manager-id': manager_id,
+        'manager_id': manager_id,
         "created_at": str(datetime.datetime.now()),
         "updated_at": None,
         "is_active": True
